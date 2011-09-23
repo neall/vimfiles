@@ -44,6 +44,7 @@ set laststatus=2
 augroup Miscellaneous
   au!
   autocmd Filetype markdown setlocal textwidth=78
+  autocmd Filetype perl     setlocal shiftwidth=4 tabstop=4
 augroup END
 
 " vim: ft=vim
