@@ -41,10 +41,23 @@ colorscheme solarized
 set statusline=%f%m\ %y%=%l,%c\ %P\ %{fugitive#statusline()}
 set laststatus=2
 
+let mapleader = " "
+
+" tab completion in insert mode
+inoremap <tab> <c-n>
+
+nnoremap <leader>ev :tabnew ~/.vim/vimrc<cr>:Glcd<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
 augroup Miscellaneous
   au!
   autocmd Filetype markdown setlocal textwidth=78
   autocmd Filetype perl     setlocal shiftwidth=4 tabstop=4
+augroup END
+
+augroup FiletypeDetection
+  au!
+  autocmd BufNewFile,BufReadPost *.tpl,*.tt setfiletype tt2html
 augroup END
 
 " vim: ft=vim
