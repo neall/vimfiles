@@ -17,6 +17,8 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 
+set history=40
+
 set hidden
 set autoread
 set autowriteall
@@ -24,6 +26,7 @@ set autowriteall
 set viminfo=%,'50,<2000
 
 set hlsearch
+noh
 set incsearch
 
 set number
@@ -43,11 +46,17 @@ set laststatus=2
 
 let mapleader = " "
 
-" tab completion in insert mode
-inoremap <tab> <c-n>
+function! InsertHistory()
+  silent! redir => history_to_insert
+  silent! history
+  silent! redir END
+  silent! put =history_to_insert
+  silent! normal o
+endf
+nnoremap <silent> <leader>h :call InsertHistory()<cr>
 
-nnoremap <leader>ev :tabnew ~/.vim/vimrc<cr>:Glcd<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <silent> <leader>ev :tabnew ~/.vim/vimrc<cr>:Glcd<cr>
+nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 augroup Miscellaneous
   au!
