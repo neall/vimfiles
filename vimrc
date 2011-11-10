@@ -7,6 +7,11 @@ syntax on
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
+set showcmd
+set lazyredraw
+set splitright
+set splitbelow
+
 filetype plugin indent on
 set ff=unix
 
@@ -36,6 +41,7 @@ set spell
 set spellsuggest=best,10
 
 set wildmenu
+set wildmode=longest:full,list:full
 
 set background=dark
 colorscheme solarized
