@@ -41,7 +41,7 @@ set spell
 set spellsuggest=best,10
 
 set wildmenu
-set wildmode=longest:full,list:full
+set wildmode=longest:full
 
 set background=dark
 colorscheme solarized
@@ -63,6 +63,7 @@ nnoremap <silent> <leader>h :call InsertHistory()<cr>
 
 nnoremap <silent> <leader>ev :tabnew ~/.vim/vimrc<cr>:Glcd<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
+nnoremap <silent> <leader>cd :Glcd<cr>
 
 augroup Miscellaneous
   au!
@@ -72,7 +73,7 @@ augroup END
 
 augroup FiletypeDetection
   au!
-  autocmd BufNewFile,BufReadPost *.tpl,*.tt setfiletype tt2html
+  autocmd BufNewFile,BufReadPost *.tpl,*.tt setlocal filetype=tt2html
 augroup END
 
 " vim: ft=vim
