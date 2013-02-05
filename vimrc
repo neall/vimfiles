@@ -7,6 +7,14 @@ syntax on
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
+nnoremap <D-9> :tabprev<cr>
+nnoremap <D-0> :tabnext<cr>
+
+" inoremap <Tab> <C-p>
+
+set ignorecase
+set smartcase
+
 set showcmd
 set lazyredraw
 set splitright
@@ -52,6 +60,16 @@ set laststatus=2
 
 let mapleader = " "
 
+let g:ctrlp_open_multiple_files = 't'
+
+function! InsertMatchingLines()
+  silent! redir => matching_lines
+  silent! g//#
+  silent! redir END
+  silent! put =matching_lines
+endf
+nnoremap <silent> <leader>gm :call InsertMatchingLines()<cr>
+
 function! InsertHistory()
   silent! redir => history_to_insert
   silent! history
@@ -64,16 +82,21 @@ nnoremap <silent> <leader>h :call InsertHistory()<cr>
 nnoremap <silent> <leader>ev :tabnew ~/.vim/vimrc<cr>:Glcd<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 nnoremap <silent> <leader>cd :Glcd<cr>
+nnoremap <silent> <leader>d :set background=dark<cr>
+nnoremap <silent> <leader>l :set background=light<cr>
+
+nnoremap <silent> <leader>x :execute getline(".")<cr>
 
 augroup Miscellaneous
   au!
-  autocmd Filetype markdown setlocal textwidth=78
+  autocmd Filetype markdown setlocal textwidth=78 shiftwidth=4 tabstop=4
   autocmd Filetype perl     setlocal shiftwidth=4 tabstop=4
 augroup END
 
 augroup FiletypeDetection
   au!
   autocmd BufNewFile,BufReadPost *.tpl,*.tt setlocal filetype=tt2html
+  autocmd BufNewFile,BufReadPost *.md setlocal filetype=markdown
 augroup END
 
 " vim: ft=vim
