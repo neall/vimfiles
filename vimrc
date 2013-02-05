@@ -77,15 +77,40 @@ function! InsertHistory()
   silent! put =history_to_insert
   silent! normal o
 endf
-nnoremap <silent> <leader>h :call InsertHistory()<cr>
+" nnoremap <silent> <leader>h :call InsertHistory()<cr>
 
-nnoremap <silent> <leader>ev :tabnew ~/.vim/vimrc<cr>:Glcd<cr>
+" edit this file's directory
+nnoremap <silent> <leader>e. :e %:h<cr>
+
+" edit vimrc
+nnoremap <silent> <leader>ev :tabnew $MYVIMRC<cr>
+" source vimrc
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
+
+" cuke split:
+nmap <silent> <leader>cs :only<cr>:sp<cr><c-]>zz
+" cuke vertsplit:
+nmap <silent> <leader>cv :only<cr>:vs<cr><c-]>zz
+
+nnoremap <leader><bar> :Tabularize /\|/<cr>
+nnoremap <leader>> :Tabularize /=>/<cr>
+nnoremap <leader>= :Tabularize /=/<cr>
+nnoremap <leader>: :Tabularize /:\zs/<cr>
+
+" lcd to the git root
 nnoremap <silent> <leader>cd :Glcd<cr>
 nnoremap <silent> <leader>d :set background=dark<cr>
 nnoremap <silent> <leader>l :set background=light<cr>
 
-nnoremap <silent> <leader>x :execute getline(".")<cr>
+autocmd! FileType cucumber
+      \ if filereadable(expand('$HOME/vimfiles/scripts/tabularize-cuke-tables.vim'))
+      \ | source $HOME/vimfiles/scripts/tabularize-cuke-tables.vim
+      \ | endif
+
+" nnoremap <silent> <leader>j :tabnext<cr>
+" nnoremap <silent> <leader>l :tabnext<cr>
+" nnoremap <silent> <leader>k :tabprev<cr>
+" nnoremap <silent> <leader>h :tabprev<cr>
 
 augroup Miscellaneous
   au!
