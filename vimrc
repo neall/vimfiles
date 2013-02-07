@@ -36,6 +36,8 @@ set hidden
 set autoread
 set autowriteall
 
+set guioptions=egm
+
 set viminfo=%,'50,<2000
 
 set hlsearch

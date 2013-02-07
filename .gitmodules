@@ -19,9 +19,6 @@
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "bundle/perl"]
-	path = bundle/perl
-	url = https://github.com/petdance/vim-perl.git
 [submodule "bundle/repeat"]
 	path = bundle/repeat
 	url = https://github.com/tpope/vim-repeat.git
