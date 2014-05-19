@@ -36,7 +36,8 @@ set hidden
 set autoread
 set autowriteall
 
-set guioptions=egm
+set guioptions=gm
+set guifont=Monaco:h14
 
 set viminfo=%,'50,<2000
 
@@ -47,14 +48,20 @@ set incsearch
 set number
 set scrolloff=1
 
+set nojoinspaces
+
 set spell
 set spellsuggest=best,10
 
 set wildmenu
 set wildmode=longest:full
 
-set background=dark
-colorscheme solarized
+if has("gui_running")
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme elflord
+endif
 
 " requires vim-fugitive:
 set statusline=%f%m\ %y%=%l,%c\ %P\ %{fugitive#statusline()}
@@ -63,6 +70,7 @@ set laststatus=2
 let mapleader = " "
 
 let g:ctrlp_open_multiple_files = 't'
+let g:ctrlp_switch_buffer = 'eT'
 
 function! InsertMatchingLines()
   silent! redir => matching_lines
@@ -98,11 +106,23 @@ nnoremap <leader><bar> :Tabularize /\|/<cr>
 nnoremap <leader>> :Tabularize /=>/<cr>
 nnoremap <leader>= :Tabularize /=/<cr>
 nnoremap <leader>: :Tabularize /:\zs/<cr>
+nnoremap <leader><leader> :b#<cr>
 
 " lcd to the git root
 nnoremap <silent> <leader>cd :Glcd<cr>
-nnoremap <silent> <leader>d :set background=dark<cr>
-nnoremap <silent> <leader>l :set background=light<cr>
+nnoremap <silent> <leader>d :colorscheme solarized<cr>:set background=dark<cr>
+nnoremap <silent> <leader>l :colorscheme solarized<cr>:set background=light<cr>
+
+nnoremap <silent> <leader>pr Orequire 'pry'; binding.pry<esc>
+
+" test snippets
+nnoremap <silent> <leader>tg oGiven { false }<esc>b
+nnoremap <silent> <leader>tG oGiven(:subject) { false }<esc>b
+nnoremap <silent> <leader>tw oWhen { false }<esc>b
+nnoremap <silent> <leader>tW oWhen(:result) { false }<esc>b
+nnoremap <silent> <leader>tt oThen { false }<esc>b
+nnoremap <silent> <leader>tT oAnd  { false }<esc>b
+nnoremap <silent> <leader>td odescribe 'xxxxxxxxx' do<cr>end<esc>k$bbb
 
 autocmd! FileType cucumber
       \ if filereadable(expand('$HOME/vimfiles/scripts/tabularize-cuke-tables.vim'))
@@ -114,9 +134,12 @@ autocmd! FileType cucumber
 " nnoremap <silent> <leader>k :tabprev<cr>
 " nnoremap <silent> <leader>h :tabprev<cr>
 
+nnoremap <silent> <leader>n :tabnext<cr>
+
 augroup Miscellaneous
   au!
-  autocmd Filetype markdown setlocal textwidth=78 shiftwidth=4 tabstop=4
+  " autocmd Filetype markdown setlocal textwidth=78 shiftwidth=4 tabstop=4
+  autocmd Filetype markdown setlocal shiftwidth=4 tabstop=4
   autocmd Filetype perl     setlocal shiftwidth=4 tabstop=4
 augroup END
 
@@ -124,6 +147,7 @@ augroup FiletypeDetection
   au!
   autocmd BufNewFile,BufReadPost *.tpl,*.tt setlocal filetype=tt2html
   autocmd BufNewFile,BufReadPost *.md setlocal filetype=markdown
+  autocmd BufRead,BufNewFile *.hamlc set filetype=haml
 augroup END
 
 " vim: ft=vim
