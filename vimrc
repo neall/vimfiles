@@ -55,6 +55,7 @@ set spellsuggest=best,10
 
 set wildmenu
 set wildmode=longest:full
+set wildignore+=node_modules/**
 
 if has("gui_running")
   set background=dark
@@ -91,6 +92,9 @@ endf
 
 " edit this file's directory
 nnoremap <silent> <leader>e. :e %:h<cr>
+
+" delete current buffer
+nnoremap <silent> <leader>dd :bd<cr>
 
 " edit vimrc
 nnoremap <silent> <leader>ev :tabnew $MYVIMRC<cr>
