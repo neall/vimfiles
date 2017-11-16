@@ -7,10 +7,10 @@ syntax on
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
+nnoremap <silent> <leader>n :tabnext<cr>
 nnoremap <D-9> :tabprev<cr>
+nnoremap <silent> <leader>N :tabprev<cr>
 nnoremap <D-0> :tabnext<cr>
-
-" inoremap <Tab> <C-p>
 
 set ignorecase
 set smartcase
@@ -37,7 +37,8 @@ set autoread
 set autowriteall
 
 set guioptions=gm
-set guifont=Monaco:h14
+set guifont=Monaco:h15
+set guifont=Source\ Code\ Pro:h16
 
 set viminfo=%,'50,<2000
 
@@ -106,18 +107,26 @@ nmap <silent> <leader>cs :only<cr>:sp<cr><c-]>zz
 " cuke vertsplit:
 nmap <silent> <leader>cv :only<cr>:vs<cr><c-]>zz
 
-nnoremap <leader><bar> :Tabularize /\|/<cr>
-nnoremap <leader>> :Tabularize /=>/<cr>
-nnoremap <leader>= :Tabularize /=/<cr>
-nnoremap <leader>: :Tabularize /:\zs/<cr>
+vnoremap <leader><bar> :Tabularize /\|/<cr>
+vnoremap <leader>> :Tabularize /=>/<cr>
+vnoremap <leader>= :Tabularize /=/<cr>
+vnoremap <leader>: :Tabularize /:\zs/<cr>
 nnoremap <leader><leader> :b#<cr>
+nnoremap <leader>gg :Ggrep -w <cr>
 
 " lcd to the git root
 nnoremap <silent> <leader>cd :Glcd<cr>
 nnoremap <silent> <leader>d :colorscheme solarized<cr>:set background=dark<cr>
 nnoremap <silent> <leader>l :colorscheme solarized<cr>:set background=light<cr>
 
+nnoremap <silent> <leader>de :e %:h<cr>
+nnoremap <silent> <leader>dv :vsp %:h<cr>
+nnoremap <silent> <leader>ds :sp %:h<cr>
+nnoremap <silent> <leader>dt :tabnew %:h<cr>
+
 nnoremap <silent> <leader>pr Orequire 'pry'; binding.pry<esc>
+
+nnoremap <silent> <leader>op 0y$:! open <C-r>"<cr>
 
 " test snippets
 nnoremap <silent> <leader>tg oGiven { false }<esc>b
@@ -128,22 +137,17 @@ nnoremap <silent> <leader>tt oThen { false }<esc>b
 nnoremap <silent> <leader>tT oAnd  { false }<esc>b
 nnoremap <silent> <leader>td odescribe 'xxxxxxxxx' do<cr>end<esc>k$bbb
 
+" specific xml formatting stuff - probably delete this:
+nnoremap <silent> <leader>xr :%s/</\r</g<cr>:%g/[^>]$/j<cr>:%s/\S\zs </</g<cr>ggddj>G>G>GG<<<<<<gg:%g/<\/\=INVOICE>/<<<cr>:%g/<\/\=_\d\d\d[_A-Z]\+>/<<cr>:noh<cr>gg
+
 autocmd! FileType cucumber
       \ if filereadable(expand('$HOME/vimfiles/scripts/tabularize-cuke-tables.vim'))
       \ | source $HOME/vimfiles/scripts/tabularize-cuke-tables.vim
       \ | endif
 
-" nnoremap <silent> <leader>j :tabnext<cr>
-" nnoremap <silent> <leader>l :tabnext<cr>
-" nnoremap <silent> <leader>k :tabprev<cr>
-" nnoremap <silent> <leader>h :tabprev<cr>
-
-nnoremap <silent> <leader>n :tabnext<cr>
-
 augroup Miscellaneous
   au!
-  " autocmd Filetype markdown setlocal textwidth=78 shiftwidth=4 tabstop=4
-  autocmd Filetype markdown setlocal shiftwidth=4 tabstop=4
+  autocmd Filetype markdown setlocal shiftwidth=4 tabstop=4 textwidth=80 linebreak
   autocmd Filetype perl     setlocal shiftwidth=4 tabstop=4
 augroup END
 

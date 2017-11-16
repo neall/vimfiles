@@ -43,3 +43,6 @@
 [submodule "bundle/vim-mustache-handlebars"]
 	path = bundle/vim-mustache-handlebars
 	url = git@github.com:mustache/vim-mustache-handlebars.git
+[submodule "bundle/vim-slim"]
+	path = bundle/vim-slim
+	url = git@github.com:slim-template/vim-slim.git
