@@ -126,19 +126,12 @@ nnoremap <silent> <leader>dt :tabnew %:h<cr>
 
 nnoremap <silent> <leader>pr Orequire 'pry'; binding.pry<esc>
 
-nnoremap <silent> <leader>op 0y$:! open <C-r>"<cr>
+nnoremap <silent> <leader>o $T :noh<cr>y$:!open '<C-r>"'<cr>
 
-" test snippets
-nnoremap <silent> <leader>tg oGiven { false }<esc>b
-nnoremap <silent> <leader>tG oGiven(:subject) { false }<esc>b
-nnoremap <silent> <leader>tw oWhen { false }<esc>b
-nnoremap <silent> <leader>tW oWhen(:result) { false }<esc>b
-nnoremap <silent> <leader>tt oThen { false }<esc>b
-nnoremap <silent> <leader>tT oAnd  { false }<esc>b
-nnoremap <silent> <leader>td odescribe 'xxxxxxxxx' do<cr>end<esc>k$bbb
+" nnoremap <silent> <leader>t 0:put =strftime('%F')<cr>I# <esc>0
+nnoremap <silent> <leader>t gg0I# <C-r>=strftime('%F')<cr><cr><cr>## yesterday<cr><cr>## today<cr><cr>## blockers<cr><cr><cr><esc>ggjj
 
-" specific xml formatting stuff - probably delete this:
-nnoremap <silent> <leader>xr :%s/</\r</g<cr>:%g/[^>]$/j<cr>:%s/\S\zs </</g<cr>ggddj>G>G>GG<<<<<<gg:%g/<\/\=INVOICE>/<<<cr>:%g/<\/\=_\d\d\d[_A-Z]\+>/<<cr>:noh<cr>gg
+nnoremap <silent> <leader>p :Prettier
 
 autocmd! FileType cucumber
       \ if filereadable(expand('$HOME/vimfiles/scripts/tabularize-cuke-tables.vim'))
@@ -147,8 +140,9 @@ autocmd! FileType cucumber
 
 augroup Miscellaneous
   au!
-  autocmd Filetype markdown setlocal shiftwidth=4 tabstop=4 textwidth=80 linebreak
+  autocmd Filetype markdown setlocal textwidth=80 linebreak
   autocmd Filetype perl     setlocal shiftwidth=4 tabstop=4
+  autocmd BufWritePre */nexia-js/*.js,*/nexia-js/*.jsx :Prettier
 augroup END
 
 augroup FiletypeDetection

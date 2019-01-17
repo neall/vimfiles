@@ -49,3 +49,9 @@
 [submodule "bundle/puppet"]
 	path = bundle/puppet
 	url = git@github.com:rodjek/vim-puppet.git
+[submodule "bundle/vim-pug"]
+	path = bundle/vim-pug
+	url = git@github.com:digitaltoad/vim-pug.git
+[submodule "bundle/vim-prettier"]
+	path = bundle/vim-prettier
+	url = git@github.com:prettier/vim-prettier.git
