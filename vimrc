@@ -7,9 +7,9 @@ syntax on
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
-nnoremap <silent> <leader>n :tabnext<cr>
+nnoremap <silent> <leader>] :tabnext<cr>
 nnoremap <D-9> :tabprev<cr>
-nnoremap <silent> <leader>N :tabprev<cr>
+nnoremap <silent> <leader>[ :tabprev<cr>
 nnoremap <D-0> :tabnext<cr>
 
 set ignorecase
@@ -37,8 +37,8 @@ set autoread
 set autowriteall
 
 set guioptions=gm
-set guifont=Monaco:h15
-set guifont=Source\ Code\ Pro:h16
+set guifont=Monaco:h24
+" set guifont=Source\ Code\ Pro:h16
 
 set viminfo=%,'50,<2000
 
@@ -49,6 +49,7 @@ set incsearch
 set number
 set scrolloff=1
 
+" Don't double-space after sentences:
 set nojoinspaces
 
 set spell
@@ -62,7 +63,7 @@ if has("gui_running")
   set background=dark
   colorscheme solarized
 else
-  colorscheme elflord
+  colorscheme desert
 endif
 
 " requires vim-fugitive:
@@ -126,12 +127,12 @@ nnoremap <silent> <leader>dt :tabnew %:h<cr>
 
 nnoremap <silent> <leader>pr Orequire 'pry'; binding.pry<esc>
 
-nnoremap <silent> <leader>o $T :noh<cr>y$:!open '<C-r>"'<cr>
-
 " nnoremap <silent> <leader>t 0:put =strftime('%F')<cr>I# <esc>0
 nnoremap <silent> <leader>t gg0I# <C-r>=strftime('%F')<cr><cr><cr>## yesterday<cr><cr>## today<cr><cr>## blockers<cr><cr><cr><esc>ggjj
 
 nnoremap <silent> <leader>p :Prettier
+
+nnoremap <silent> <leader>s :vsp<cr><C-w>h:A<cr>
 
 autocmd! FileType cucumber
       \ if filereadable(expand('$HOME/vimfiles/scripts/tabularize-cuke-tables.vim'))
@@ -142,6 +143,8 @@ augroup Miscellaneous
   au!
   autocmd Filetype markdown setlocal textwidth=80 linebreak
   autocmd Filetype perl     setlocal shiftwidth=4 tabstop=4
+  autocmd Filetype objc     setlocal shiftwidth=4 tabstop=4
+  autocmd Filetype objcpp   setlocal shiftwidth=4 tabstop=4
   autocmd BufWritePre */nexia-js/*.js,*/nexia-js/*.jsx :Prettier
 augroup END
 
