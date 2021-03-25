@@ -55,3 +55,6 @@
 [submodule "bundle/vim-prettier"]
 	path = bundle/vim-prettier
 	url = git@github.com:prettier/vim-prettier.git
+[submodule "bundle/vim-ruby-heredoc-syntax"]
+	path = bundle/vim-ruby-heredoc-syntax
+	url = git@github.com:joker1007/vim-ruby-heredoc-syntax.git
