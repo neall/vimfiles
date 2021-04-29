@@ -58,3 +58,6 @@
 [submodule "bundle/vim-ruby-heredoc-syntax"]
 	path = bundle/vim-ruby-heredoc-syntax
 	url = git@github.com:joker1007/vim-ruby-heredoc-syntax.git
+[submodule "bundle/vim-terraform"]
+	path = bundle/vim-terraform
+	url = git@github.com:hashivim/vim-terraform.git
